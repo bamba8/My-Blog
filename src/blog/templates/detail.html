@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class=" px-5 mt-2 ">Détail article</h1>
+                <img src="{{article.image.url}}" alt="" style="max-width:600px";/>
+                <h2>{{article.title}}</h2>
+                <p>{{article.description}}</p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="mt-2">Les articles en relations </h3>
+                <div class="row">
+                    {% for art in aer %}
+                    {% if art.id != article.id %}
+                    <a href="{% url 'detail' art.id %}" >
+                        <div class="col-md-7 mb-1">
+                            {% if art.image != "http://default" %}
+                            <img src="{{ art.image.url }}" alt="" style="max-width:180px;">
+                            {% else %}
+                            <img src="https://via.placeholder.com/400X300" class="card-img-top" alt="..." style="max-width:180px;">
+                            {% endif %}
+                        </div>
+                    </a>
+                    <div class="col-5">
+
+                           <a href="{% url 'detail' art.id %}" ><strong>{{art.title}}</strong></a><br/>
+                          {{art.description|truncatewords:10}}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

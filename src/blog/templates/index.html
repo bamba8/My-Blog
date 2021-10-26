@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <h2 class="text-center mt-3">Bienvenu sur mon Blog</h2>
+    <div class="container">
+    <div class="row">
+        {% for article in list_articles %}
+        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="card">
+                {% if article.image == "http://default" %}
+                 <a href="{% url 'detail' article.id %}">
+                    <img src="https://via.placeholder.com/400X300" class="card-img-top" alt="..." style="height:200px;"/>
+                </a>
+                {% else %}
+                <a href="{% url 'detail' article.id %}">
+                    <img src="{{article.image.url }}" class="card-img-top" alt="..." style="height:200px;"/>
+                </a>
+                 {% endif %}
+                <div class="card-body" style="height:240px;">
+                    <h4 class="card-title"><a href="{% url 'detail' article.id %}" >{{article.title}}</a></h4>
+                    <p class="card-text"> {{article.description|truncatewords:10}}</p>
+                    <p class="card-text"> Publié il y a {{article.created_at|timesince}}</p>
+                    <a href="{% url 'detail' article.id %}" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock %}
