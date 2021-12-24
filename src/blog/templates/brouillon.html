@@ -11,3 +11,102 @@
 
 </body>
 </html>
+
+
+<ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-link">
+          <span class="nav-link"> Esso</span>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+
+
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center " style="margin-right: 5%;">
+
+      <!-- Avatar -->
+      <ul class="dropdown-toggle  d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-user"></i>
+      </ul>
+      <ul
+        class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+        <li>
+          <a class="dropdown-item" href="#">My profile</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Settings</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Logout</a>
+        </li>
+      </ul>
+
+
+
+<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+
+        {% extends 'base.html' %}
+{% block title %} Contactez-moi {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12 mt-5 mb-5">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger text-center "><strong>{{message}}</strong></div>
+        {% endfor %}
+        {% endif %}
+
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-header text-center "><i class="fas fa-user"></i>Contactez-moi </div>
+                 <div class="card-body">
+                     <label for="id_nom">Nom </label>
+                     {% if form.nom.errors %}
+                     {% for error in form.nom.errors %}
+                     <div class="div-error-{{form.nom.name}}"><small class="text-danger">{{error}}</small></div>
+                     {% endfor %}
+                     {% endif %}
+                     {{ form.nom }}
+
+                     <label for="id_email">email </label>
+                     {% if form.email.errors %}
+                     {% for error in form.email.errors %}
+                     <div class="div-error-{{form.email.name}}"><small class="text-danger">{{error}}</small></div>
+                     {% endfor %}
+                     {% endif %}
+                    {{ form.email}}
+
+                     <label for="id_contacts">Message </label>
+                     {% if form.contacts.errors %}
+                     {% for error in form.contacts.errors %}
+                     <div class="div-error-{{form.contacts.name}}"><small class="text-danger">{{error}}</small></div>
+                     {% endfor %}
+                     {% endif %}
+                    {{ form.contacts}}
+
+                 </div>
+                 <div class="card-footer">
+                     <button class="btn btn-primary btn-block"> Envoyer </button>
+                 </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+<h5>Bonjour</h5>
+{% endblock %}
+
+

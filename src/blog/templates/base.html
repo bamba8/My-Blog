@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Blog</title>
+    <title>{% block title %}My Blog {% endblock %}</title>
 
      <!-- MDB icon -->
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon"/>
@@ -29,5 +29,7 @@
     <script type="text/javascript" src="{% static 'js/mdb.min.js' %} "></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
+    {% block  scripts %}
+    {% endblock  %}
 </body>
 </html>
